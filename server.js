@@ -24,6 +24,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
+const methodOverride = require('method-override')
 
 app.set('view-engine','ejs');
 
@@ -42,7 +43,7 @@ app.use(session({
   }))
 app.use(passport.initialize())
 app.use(passport.session())
-// app.use(methodOverride('_method'))  
+app.use(methodOverride('_method'))  
 
 // configure app
 app.use(morgan('dev')); // log requests to the console
@@ -118,6 +119,15 @@ app.post('/register', async function(req,res){
 	console.log(users);
 
 })
+app.get('/logout', function(req,res){
+	res.render('index.ejs')
+})
+
+app.delete('/logout', function(req,res){
+	req.logout()
+	res.redirect('/login');
+
+})
 
 
 // create our router
@@ -147,7 +157,7 @@ router.get('/', checkAuthenticated, function(req, res) {
 	}
 	    }
 	})
-	res.send({ message: 'hooray! welcome to our api!' });	
+	res.send({ message: 'hooray! welcome to our api!', PS: '/logout to logout' });	
 	console.log('test');
 });
 
