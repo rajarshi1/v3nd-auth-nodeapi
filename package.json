@@ -19,7 +19,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.17.1",
     "method-override": "^3.0.0",
-    "mongoose": "~4.11.14",
+    "mongoose": "~5.7.5",
     "morgan": "~1.9.0",
     "nexmo": "^2.4.1",
     "passport": "^0.4.1",
